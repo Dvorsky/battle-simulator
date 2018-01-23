@@ -11,13 +11,13 @@ class Map
     {
         $map = [];
 
-        for ($x = 0; $x < $size_x; $x++) {
-            $redak = [];
-            for ($y = 0; $y < $size_y; $y++) {
-                array_push($redak, null);
+        for ($y = 0; $y < $size_y; $y++) {
+            $row = [];
+            for ($x = 0; $x < $size_x; $x++) {
+                array_push($row, null);
             }
 
-            array_push($map, $redak);
+            array_push($map, $row);
         }
 
         $this->map = $map;
@@ -51,8 +51,8 @@ class Map
 
 
 
-        $this->map[$x][$y] = new Army($army_size, [$x, $y]);
+        $this->map[$y][$x] = new Army($army_size, [$x, $y]);
 
-        return $this->map[$x][$y];
+        return $this->map[$y][$x];
     }
 }
