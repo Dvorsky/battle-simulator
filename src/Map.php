@@ -34,24 +34,28 @@ class Map
     {
         foreach ($this->map as $row) {
             foreach ($row as $cell) {
-                if ($cell != null) {
-                    echo 'army ';
-                } else {
-                    echo 'null ';
+                switch (true) {
+                    case $cell instanceof Army:
+                        echo 'Army ';
+                        break;
+                    case $cell instanceof Soldier:
+                        echo 'Soldier ';
+                        break;
+                    case $cell == null:
+                        echo 'Null ';
+                        break;
                 }
             }
             echo '<br>';
         }
     }
 
-    public function set_army($army_size)
+    public function set_army($army_size, $team)
     {
         $x = rand(0, $this->size['x'] - 1);
         $y = rand(0, $this->size['y'] - 1);
 
-
-
-        $this->map[$y][$x] = new Army($army_size, [$x, $y]);
+        $this->map[$y][$x] = new Army($army_size, [$x, $y], $this, $team);
 
         return $this->map[$y][$x];
     }

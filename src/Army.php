@@ -13,8 +13,10 @@ use App\Map;
 
 class Army
 {
-
+    public $team;
     private $position = [];
+    private $last_troop_position = [];
+    public $size;
 
     /**
      * Army constructor. Sets up starting position for army and surrounding soldiers
@@ -22,11 +24,17 @@ class Army
      * @param int $army_size
      * @param array $position
      */
-    public function __construct(int $army_size, array $position)
+    public function __construct(int $army_size, array $position, Map $map, $team)
     {
         $this->position = $position;
+        $this->last_troop_position = $position;
+        $this->team = $team;
 
         for ($i = 0; $i < $army_size; $i++) {
+            if ($soldier = new Soldier($this, $map)) {
+                $this->last_troop_position = $soldier->position;
+                $this->size++;
+            };
 
         }
 
@@ -41,6 +49,11 @@ class Army
     public function get_position()
     {
         return $this->position;
+    }
+
+    public function get_last_troop_position()
+    {
+        return $this->last_troop_position;
     }
 
 
