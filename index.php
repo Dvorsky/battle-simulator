@@ -1,21 +1,21 @@
 <?php
 
-include('src/functions/print_map.php');
 require __DIR__.'/vendor/autoload.php';
 
-use App\Map;
+use App\Army;
+use App\Battle;
 
-$map = new Map(50, 50);
+/*
+ * Grabs army sizes and initializes two army objects which then fight
+ */
 
 $army1_size = $_GET['army1'];
 $army2_size = $_GET['army2'];
 
+$blue = new Army($army1_size, 'Blue');
+$red = new Army($army2_size, 'Red');
 
-$red = $map->set_army($army1_size);
-$blue = $map->set_army($army2_size);
+$battle = new Battle($blue, $red);
+$battle->start();
 
-$map->show();
-
-
-
-
+echo $battle->result;
