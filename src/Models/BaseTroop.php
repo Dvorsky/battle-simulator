@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-
 class BaseTroop
 {
     public $health, $str, $def, $acc;

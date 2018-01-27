@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Army;
-use App\Models\Human\Troop;
+use App\Models\Troop;
 
 class Battle
 {

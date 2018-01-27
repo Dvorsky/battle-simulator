@@ -2,8 +2,8 @@
 
 require __DIR__.'/vendor/autoload.php';
 
-use App\Army;
-use App\Battle;
+use App\Models\Army;
+use App\Controllers\Battle;
 
 /*
  * Grabs army sizes and initializes two army objects which then fight
@@ -18,4 +18,10 @@ $red = new Army($army2_size, 'Red');
 $battle = new Battle($blue, $red);
 $battle->start();
 
-echo $battle->result;
+?>
+
+<p>
+    <strong><?= $battle->winner->team ?> won in <?= $battle->turn ?> turns.</strong><br>
+    <?= $battle->blue->team ?> was playing as <?= $battle->blue->race ?><br>
+    <?= $battle->red->team ?> was playing as <?= $battle->red->race ?><br>
+</p>

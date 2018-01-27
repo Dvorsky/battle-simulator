@@ -2,11 +2,16 @@
 
 namespace App\Models;
 
-use App\Models\Human\Troop;
-
 class Army
 {
-    public $size, $team, $troops = [];
+    public $team, $troops = [];
+    private $races = [
+        'Human',
+        'Elf',
+        'Orc'
+    ];
+
+
 
     /**
      * Creates number of troops based on army size
@@ -16,13 +21,21 @@ class Army
      */
     public function __construct(int $army_size, string $team)
     {
-        $this->size = $army_size;
         $this->team = $team;
+        $this->race = $this->races[rand(0, count($this->races) - 1)];
 
         for ($i = 0; $i < $army_size; $i++) {
             $troop = new Troop($this);
 
             array_push($this->troops, $troop);
         }
+    }
+
+    /**
+     * Return size of the army
+     */
+    public function get_size()
+    {
+        return count($this->troops);
     }
 }
