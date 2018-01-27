@@ -5,7 +5,7 @@ namespace App\Models;
 
 class BaseTroop
 {
-    public $health, $str, $def, $fit;
+    public $health, $str, $def, $acc;
 
     /**
      * basic stats to a troop model
@@ -16,7 +16,7 @@ class BaseTroop
         $this->health = 100;
         $this->str = rand(10, 20);
         $this->def = rand(5, 10);
-        $this->fit = rand(70, 100);
+        $this->acc = rand(40,60);
 
     }
 
