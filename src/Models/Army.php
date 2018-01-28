@@ -11,10 +11,9 @@ class Army
         'Orc'
     ];
 
-
-
     /**
-     * Creates number of troops based on army size
+     * Creates number of troops based on army size and assigns
+     * Army race by random index for $races array
      *
      * @param int $army_size
      * @param string $team

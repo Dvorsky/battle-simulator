@@ -12,7 +12,8 @@ class Battle
     private $attacker, $defender;
 
     /**
-     * Battle constructor.
+     * Battle constructor
+     * Using "blue side" and "red side" to refer to the two armies
      *
      * @param Army $blue
      * @param Army $red
@@ -26,7 +27,8 @@ class Battle
     /**
      *  Main battle loop
      *  At start generates hit chance and based on it it decides
-     *  who is 'Attacker' and who 'Defender'
+     *  who is 'Attacker' and who 'Defender' and then proceeds
+     *  calling methods relevant for attacking
      *
      */
     public function start()
@@ -70,13 +72,13 @@ class Battle
      * After that, damage calculation is being done
      * At end, check if Troop is killed or not and return the updated Army
      *
-     * @param $id_of_attacker
-     * @param $id_of_defender
+     * @param int $id_of_attacker
+     * @param int $id_of_defender
      * @param Army $attacker
      * @param Army $defender
      * @return Army
      */
-    public function attack($id_of_attacker, $id_of_defender, Army $attacker, Army $defender)
+    public function attack(int $id_of_attacker, int $id_of_defender, Army $attacker, Army $defender)
     {
         if (!$this->acc_check($attacker->troops[$id_of_attacker])) {
             return $defender;
@@ -95,7 +97,6 @@ class Battle
 
     /**
      * Check if Troop successfully hits the target based on acc
-     * It's pretty basic formula which isn't the best
      *
      * @param Troop $troop
      * @return bool
@@ -111,7 +112,7 @@ class Battle
 
     /**
      * Damage calculation based on formula:
-     * damage = att * att / (att + def)
+     * damage = attacker(att * att) / defender((att + def))
      *
      * @param Troop $attacker
      * @param Troop $defender
@@ -173,10 +174,10 @@ class Battle
     /**
      * Get an ID number for enemy Troop
      *
-     * @param $size
+     * @param int $size
      * @return int
      */
-    public function get_enemy_id($size)
+    public function get_enemy_id(int $size)
     {
         return rand(0, $size - 1);
     }
@@ -204,7 +205,7 @@ class Battle
     }
 
     /**
-     * Return result of the match
+     * Set winner based on whoever reached 0 Troops first
      */
     public function set_winner()
     {
